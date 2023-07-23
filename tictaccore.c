@@ -6,12 +6,11 @@
 int matrix[3][3] = { {0,0,0}, {0,0,0} ,{0,0,0} };
 
 // function declarators
-// int RandGen(); no need bcos its not used in main 
 void PrintMatrix(int[3][3]);
 void PlayerMatrixEdit(int[3][3]);
 void AiMatrixEdit(int[3][3]);
 // void checkFreeCells(int[3][3]);
-// int CheckMatrix(int[3][3]); incomplete
+int CheckMatrix(int[3][3]);
 
 // function main
 int main(){
@@ -26,27 +25,21 @@ int main(){
         PlayerMatrixEdit(matrix);
         PrintMatrix(matrix);
 
-        // checkval = CheckMatrix(matrix);
-        /*
+        checkval = CheckMatrix(matrix);
         if (checkval == 1){
             printf("player wins");
-            // exit(0);
+            break;
         }
-
-        */
 
         printf("ai's turn \n");
         AiMatrixEdit(matrix);
         PrintMatrix(matrix);
 
-        /*
         checkval = CheckMatrix(matrix);
         if (checkval == 2){
             printf("ai wins");
-            // exit(0);
+            break;
         }
-
-        */
 
         // quitting condition
         printf("do you like to continue (y/n) : ");
@@ -71,9 +64,9 @@ void PrintMatrix(int matrixarg[3][3]){
 void PlayerMatrixEdit(int matrixarg[3][3]){
     // this function is made to allow the player to edit the matrix
     int xcrd,ycrd;
-    printf("enter x coordinate between 1 and 3 : ");
+    printf("enter row no: between 1 and 3 : ");
     scanf("%d",&xcrd);
-    printf("now enter y coordinate between 1 and 3 : ");
+    printf("now col no: between 1 and 3 : ");
     scanf("%d",&ycrd);
     --xcrd, --ycrd;
     fflush(stdin); // to fix scanf issues
@@ -105,11 +98,11 @@ void AiMatrixEdit(int matrixarg[3][3]){
     else AiMatrixEdit(matrix);
 }
 
-/*
-
 int CheckMatrix(int matrixarg[3][3]){
     // this function is used to check the winning / losing condition
     // incomplete
+
+    /*
     // horizontal check
     int xcordcheck = 0, ycordcheck = 0, checkvalarr[3];
     for (;xcordcheck <= 3; xcordcheck++) {
@@ -125,10 +118,19 @@ int CheckMatrix(int matrixarg[3][3]){
         if (checkvalarr[0] == checkvalarr[1] == checkvalarr[2] == 1) return 1;
         else if (checkvalarr[0] == checkvalarr[1] == checkvalarr[2] == 2) return 2;
     }
+
+    */
+
+    // diagonal check
+    if ((matrixarg[0][0] == matrixarg[1][1] && matrixarg[1][1] == matrixarg[2][2]) 
+        || (matrixarg[0][2] == matrixarg[1][1] && matrixarg[1][1] == matrixarg[2][0])){
+        if (matrixarg[1][1] == 1) return 1;
+        else if (matrixarg[1][1] == 2) return 2;
+    }
+
     return 0;
 } // checkmatrix
 
-*/
 
 /*
 
