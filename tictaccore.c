@@ -10,8 +10,8 @@ int matrix[3][3] = { {0,0,0}, {0,0,0} ,{0,0,0} };
 void PrintMatrix(int[3][3]);
 void PlayerMatrixEdit(int[3][3]);
 void AiMatrixEdit(int[3][3]);
-void checkFreeCells(int[3][3]);
-int CheckMatrix(int[3][3]);
+// void checkFreeCells(int[3][3]);
+// int CheckMatrix(int[3][3]); incomplete
 
 // function main
 int main(){
@@ -21,24 +21,32 @@ int main(){
     char Breaker;
 
     while (1){ // continous play till the player stops
-        //enter new fns for player and ai plays
+        
         printf("player's turn\n");
         PlayerMatrixEdit(matrix);
         PrintMatrix(matrix);
-        checkval = CheckMatrix(matrix);
+        
+        // checkval = CheckMatrix(matrix);
+        /*
         if (checkval == 1){
             printf("player wins");
             // exit(0);
         }
 
+        */
+
         printf("ai's turn \n");
         AiMatrixEdit(matrix);
         PrintMatrix(matrix);
+
+        /*
         checkval = CheckMatrix(matrix);
         if (checkval == 2){
             printf("ai wins");
             // exit(0);
         }
+
+        */
 
         // quitting condition
         fflush(stdin); // patch to fix scanf not working
@@ -98,6 +106,8 @@ void AiMatrixEdit(int matrixarg[3][3]){
     else AiMatrixEdit(matrix);
 }
 
+/*
+
 int CheckMatrix(int matrixarg[3][3]){
     // this function is used to check the winning / losing condition
     // incomplete
@@ -119,7 +129,13 @@ int CheckMatrix(int matrixarg[3][3]){
     return 0;
 } // checkmatrix
 
+*/
+
+/*
+
 void checkFreeCells(int matrixarg[3][3]){
     // this function is used to check for empty cells, returns 0 if no empty cells
     int initval = matrixarg[0][0];
 }
+
+*/
