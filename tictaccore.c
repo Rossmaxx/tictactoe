@@ -1,0 +1,125 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h> // to seed the rand() function
+
+// global variables
+int matrix[3][3] = { {0,0,0}, {0,0,0} ,{0,0,0} };
+
+// function declarators
+// int RandGen(); no need bcos its not used in main 
+void PrintMatrix(int[3][3]);
+void PlayerMatrixEdit(int[3][3]);
+void AiMatrixEdit(int[3][3]);
+void checkFreeCells(int[3][3]);
+int CheckMatrix(int[3][3]);
+
+// function main
+int main(){
+    printf("welcome to my tic tac toe game\n");
+    PrintMatrix(matrix);
+    int checkval;
+    char Breaker;
+
+    while (1){ // continous play till the player stops
+        //enter new fns for player and ai plays
+        printf("player's turn\n");
+        PlayerMatrixEdit(matrix);
+        PrintMatrix(matrix);
+        checkval = CheckMatrix(matrix);
+        if (checkval == 1){
+            printf("player wins");
+            // exit(0);
+        }
+
+        printf("ai's turn \n");
+        AiMatrixEdit(matrix);
+        PrintMatrix(matrix);
+        checkval = CheckMatrix(matrix);
+        if (checkval == 2){
+            printf("ai wins");
+            // exit(0);
+        }
+
+        // quitting condition
+        fflush(stdin); // patch to fix scanf not working
+        printf("do you like to continue (y/n) : ");
+        scanf("%c", &Breaker);
+        if(Breaker == 'n') break;
+    } // while loop
+    return 0;
+} // main function
+
+
+// all non main functions
+
+void PrintMatrix(int matrixarg[3][3]){
+    //this function is used to print the matrix
+    printf(" %d | %d | %d \n", matrixarg[0][0], matrixarg[0][1], matrixarg[0][2]); 
+    printf("-------------\n");
+    printf(" %d | %d | %d \n", matrixarg[1][0], matrixarg[1][1], matrixarg[1][2]);
+    printf("-------------\n");
+    printf(" %d | %d | %d \n", matrixarg[2][0], matrixarg[2][1], matrixarg[2][2]);
+}
+
+void PlayerMatrixEdit(int matrixarg[3][3]){
+    // this function is made to allow the player to edit the matrix
+    int xcrd,ycrd;
+    printf("enter x coordinate between 1 and 3 : ");
+    scanf("%d",&xcrd);
+    printf("now enter y coordinate between 1 and 3 : ");
+    scanf("%d",&ycrd);
+    --xcrd, --ycrd;
+    fflush(stdin); // to fix scanf issues
+    if (matrixarg[xcrd][ycrd] == 0){
+        if (xcrd >=3 || ycrd >=3){
+            printf("invalid coordinates, try again\n");
+            PlayerMatrixEdit(matrix);
+        }
+        matrixarg[xcrd][ycrd] = 1;
+    } // if matrixarg == 0
+    else{
+        printf("value exists for the given coordinates \n");
+        PlayerMatrixEdit(matrix);
+    } 
+}// PlayerMatrixEdit
+
+int RandGen(){
+    // random generator for computer's play
+    srand(time(0));
+    int AiPlay = (rand() %2) + 1;
+    return AiPlay; // returns 1,2,3 for ai's play
+}
+
+void AiMatrixEdit(int matrixarg[3][3]){
+    // this function is used for ai's turn 
+    int aixcord = RandGen();
+    int aiycord = RandGen();
+    if(matrixarg[aixcord][aiycord] == 0) matrixarg[aixcord][aiycord] = 2;
+    else AiMatrixEdit(matrix);
+}
+
+int CheckMatrix(int matrixarg[3][3]){
+    // this function is used to check the winning / losing condition
+    // incomplete
+    // horizontal check
+    int xcordcheck = 0, ycordcheck = 0, checkvalarr[3];
+    for (;xcordcheck <= 3; xcordcheck++) {
+        for (;ycordcheck <= 3; ycordcheck++) checkvalarr[ycordcheck] = matrixarg[xcordcheck][ycordcheck];
+        if (checkvalarr[0] == checkvalarr[1] == checkvalarr[2] == 1) return 1;
+        else if (checkvalarr[0] == checkvalarr[1] == checkvalarr[2] == 2) return 2;
+    }
+
+    // vertical check
+    xcordcheck = 0, ycordcheck = 0; // reset
+    for (;ycordcheck <=  3; ycordcheck++){
+        for (;xcordcheck <= 3; xcordcheck++) checkvalarr[xcordcheck] = matrixarg[xcordcheck][ycordcheck];
+        if (checkvalarr[0] == checkvalarr[1] == checkvalarr[2] == 1) return 1;
+        else if (checkvalarr[0] == checkvalarr[1] == checkvalarr[2] == 2) return 2;
+    }
+    return 0;
+} // checkmatrix
+
+void checkFreeCells(int matrixarg[3][3]){
+    // this function is used to check for empty cells, returns 0 if no empty cells
+    int initval = matrixarg[0][0];
+}
