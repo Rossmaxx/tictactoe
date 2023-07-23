@@ -63,19 +63,19 @@ void PrintMatrix(int matrixarg[3][3]){
 
 void PlayerMatrixEdit(int matrixarg[3][3]){
     // this function is made to allow the player to edit the matrix
-    int xcrd,ycrd;
+    int row,cols;
     printf("enter row no: between 1 and 3 : ");
-    scanf("%d",&xcrd);
-    printf("now col no: between 1 and 3 : ");
-    scanf("%d",&ycrd);
-    --xcrd, --ycrd;
+    scanf("%d",&row);
+    printf("enter column no: between 1 and 3 : ");
+    scanf("%d",&cols);
+    --row, --cols;
     fflush(stdin); // to fix scanf issues
-    if (matrixarg[xcrd][ycrd] == 0){
-        if (xcrd >=3 || ycrd >=3){
+    if (matrixarg[row][cols] == 0){
+        if (row >=3 || cols >=3){
             printf("invalid coordinates, try again\n");
             PlayerMatrixEdit(matrix);
         }
-        matrixarg[xcrd][ycrd] = 1;
+        matrixarg[row][cols] = 1;
     } // if matrixarg == 0
     else{
         printf("value exists for the given coordinates \n");
@@ -92,9 +92,9 @@ int RandGen(){
 
 void AiMatrixEdit(int matrixarg[3][3]){
     // this function is used for ai's turn 
-    int aixcord = RandGen();
-    int aiycord = RandGen();
-    if(matrixarg[aixcord][aiycord] == 0) matrixarg[aixcord][aiycord] = 2;
+    int aiRows = RandGen();
+    int aiCols = RandGen();
+    if(matrixarg[aiRows][aiCols] == 0) matrixarg[aiRows][aiCols] = 2;
     else AiMatrixEdit(matrix);
 }
 
