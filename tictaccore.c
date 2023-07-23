@@ -25,7 +25,7 @@ int main(){
         printf("player's turn\n");
         PlayerMatrixEdit(matrix);
         PrintMatrix(matrix);
-        
+
         // checkval = CheckMatrix(matrix);
         /*
         if (checkval == 1){
@@ -49,9 +49,8 @@ int main(){
         */
 
         // quitting condition
-        fflush(stdin); // patch to fix scanf not working
         printf("do you like to continue (y/n) : ");
-        scanf("%c", &Breaker);
+        scanf(" %c", &Breaker);
         if(Breaker == 'n') break;
     } // while loop
     return 0;
