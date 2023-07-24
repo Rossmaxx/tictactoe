@@ -102,7 +102,8 @@ void AiMatrixEdit(int matrixarg[3][3]){
     int aiRows = RandGen();
     int aiCols = RandGen();
     if(matrixarg[aiRows][aiCols] == 0) matrixarg[aiRows][aiCols] = 2;
-    else AiMatrixEdit(matrix);
+    else AiMatrixEdit(matrixarg); // TODO: replace recursion with something to get rid of segfault
+    
 }
 
 int CheckMatrix(int matrixarg[3][3]){
