@@ -9,14 +9,14 @@ int matrix[3][3] = { {0,0,0}, {0,0,0} ,{0,0,0} };
 void PrintMatrix(int[3][3]);
 void PlayerMatrixEdit(int[3][3]);
 void AiMatrixEdit(int[3][3]);
-// void checkFreeCells(int[3][3]);
+int checkFreeCells(int[3][3]);
 int CheckMatrix(int[3][3]);
 
 // function main
 int main(){
     printf("welcome to my tic tac toe game\n");
     PrintMatrix(matrix);
-    int checkval;
+    int checkval, freeCheck;
     char Breaker;
 
     while (1){ // continous play till the player stops
@@ -38,6 +38,13 @@ int main(){
         checkval = CheckMatrix(matrix);
         if (checkval == 2){
             printf("ai wins");
+            break;
+        }
+
+        // to check free cells and exist if no free cells
+        freeCheck = checkFreeCells(matrix);
+        if (freeCheck == 0){
+            printf("No free cells \n ");
             break;
         }
 
@@ -132,11 +139,15 @@ int CheckMatrix(int matrixarg[3][3]){
 } // checkmatrix
 
 
-/*
-
-void checkFreeCells(int matrixarg[3][3]){
+int checkFreeCells(int matrixarg[3][3]){
     // this function is used to check for empty cells, returns 0 if no empty cells
-    int initval = matrixarg[0][0];
+    int freeCells = 0, i, j;
+    for (i=0; i<3; i++){
+        for (j=0; j<3; j++){
+            if (matrixarg[i][j] == 0){
+                freeCells++;
+            }
+        }
+    }
+    return freeCells;
 }
-
-*/
