@@ -37,7 +37,7 @@ int main(){
 
         checkval = CheckMatrix(matrix);
         if (checkval == 2){
-            printf("ai wins");
+            printf("ai wins\n");
             break;
         }
 
@@ -101,8 +101,18 @@ void AiMatrixEdit(int matrixarg[3][3]){
     // this function is used for ai's turn 
     int aiRows = RandGen();
     int aiCols = RandGen();
+    int i, j;
     if(matrixarg[aiRows][aiCols] == 0) matrixarg[aiRows][aiCols] = 2;
-    else AiMatrixEdit(matrixarg); // TODO: replace recursion with something to get rid of segfault
+    else {
+        for (i=0; i<3; i++){
+            for (j=0; j<3; j++){
+                if (matrixarg[i][j] == 0){
+                    matrixarg[i][j] = 2;
+                    i=3, j=3; // to break out of the nested loop
+                }
+            }
+        }
+    }
     
 }
 
