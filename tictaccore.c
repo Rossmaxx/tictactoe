@@ -114,36 +114,34 @@ void AiMatrixEdit(int matrixarg[3][3]){
         }
     }
     
-}
+} // AiMatrixEdit
 
 int CheckMatrix(int matrixarg[3][3]){
     // this function is used to check the winning / losing condition
-    // incomplete
 
-    /*
+/*
+    there's a segfault in this function. will fix
     // horizontal check
-    int xcordcheck = 0, ycordcheck = 0, checkvalarr[3];
-    for (;xcordcheck <= 3; xcordcheck++) {
-        for (;ycordcheck <= 3; ycordcheck++) checkvalarr[ycordcheck] = matrixarg[xcordcheck][ycordcheck];
-        if (checkvalarr[0] == checkvalarr[1] == checkvalarr[2] == 1) return 1;
-        else if (checkvalarr[0] == checkvalarr[1] == checkvalarr[2] == 2) return 2;
+    int colNo, rowNo;
+    for (rowNo=0; rowNo<3; rowNo++){
+        if ((matrixarg[0][rowNo] == matrixarg[1][rowNo] && matrixarg[1][rowNo] == matrixarg[2][rowNo])){
+            if (matrixarg[0][rowNo] != 0) return matrixarg[0][rowNo];
+        }
     }
 
     // vertical check
-    xcordcheck = 0, ycordcheck = 0; // reset
-    for (;ycordcheck <=  3; ycordcheck++){
-        for (;xcordcheck <= 3; xcordcheck++) checkvalarr[xcordcheck] = matrixarg[xcordcheck][ycordcheck];
-        if (checkvalarr[0] == checkvalarr[1] == checkvalarr[2] == 1) return 1;
-        else if (checkvalarr[0] == checkvalarr[1] == checkvalarr[2] == 2) return 2;
+    for (rowNo=0; rowNo<3; rowNo++){
+        if ((matrixarg[colNo][0] == matrixarg[colNo][1] && matrixarg[colNo][1] == matrixarg[colNo][2])){
+            if (matrixarg[colNo][0] != 0) return matrixarg[colNo][0];
+        }
     }
 
-    */
+*/
 
     // diagonal check
     if ((matrixarg[0][0] == matrixarg[1][1] && matrixarg[1][1] == matrixarg[2][2]) 
         || (matrixarg[0][2] == matrixarg[1][1] && matrixarg[1][1] == matrixarg[2][0])){
-        if (matrixarg[1][1] == 1) return 1;
-        else if (matrixarg[1][1] == 2) return 2;
+        if (matrixarg[1][1] != 0) return matrixarg[1][1];
     }
 
     return 0;
