@@ -29,7 +29,7 @@ int main(){
 
         checkval = CheckMatrix(matrix);
         if (checkval == 1){
-            printf("player wins");
+            printf("player wins\n");
             break;
         }
 
@@ -120,24 +120,19 @@ void AiMatrixEdit(int matrixarg[3][3]){
 int CheckMatrix(int matrixarg[3][3]){
     // this function is used to check the winning / losing condition
 
-/*
-    there's a segfault in this function. will fix
     // horizontal check
-    int colNo, rowNo;
-    for (rowNo=0; rowNo<3; rowNo++){
+    for (int rowNo=0; rowNo<3; rowNo++){
         if ((matrixarg[0][rowNo] == matrixarg[1][rowNo] && matrixarg[1][rowNo] == matrixarg[2][rowNo])){
             if (matrixarg[0][rowNo] != 0) return matrixarg[0][rowNo];
         }
     }
 
     // vertical check
-    for (rowNo=0; rowNo<3; rowNo++){
+    for (int colNo=0; colNo<3; colNo++){
         if ((matrixarg[colNo][0] == matrixarg[colNo][1] && matrixarg[colNo][1] == matrixarg[colNo][2])){
             if (matrixarg[colNo][0] != 0) return matrixarg[colNo][0];
         }
     }
-
-*/
 
     // diagonal check
     if ((matrixarg[0][0] == matrixarg[1][1] && matrixarg[1][1] == matrixarg[2][2]) 
