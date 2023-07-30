@@ -2,9 +2,6 @@
 #include<stdlib.h>
 #include<time.h> // to seed the rand() function
 
-// global variables
-int matrix[3][3] = { {0,0,0}, {0,0,0} ,{0,0,0} };
-
 // function declarators
 void PrintMatrix(int[3][3]);
 void PlayerMatrixEdit(int[3][3]);
@@ -14,10 +11,15 @@ int CheckMatrix(int[3][3]);
 
 // function main
 int main(){
-    printf("welcome to my tic tac toe game\n");
-    PrintMatrix(matrix);
+    int matrix[3][3] = { {0,0,0}, {0,0,0} ,{0,0,0} };
     int checkval, freeCheck;
     char Breaker;
+
+    srand(time(0)); // seeding the AI generator to have randomness
+
+    printf("welcome to my tic tac toe game\n");
+    PrintMatrix(matrix);
+    
 
     while (1){ // continous play till the player stops
         
@@ -80,19 +82,18 @@ void PlayerMatrixEdit(int matrixarg[3][3]){
     if (matrixarg[row][cols] == 0){
         if (row >=3 || cols >=3){
             printf("invalid coordinates, try again\n");
-            PlayerMatrixEdit(matrix);
+            PlayerMatrixEdit(matrixarg);
         }
         matrixarg[row][cols] = 1;
     } // if matrixarg == 0
     else{
         printf("value exists for the given coordinates \n");
-        PlayerMatrixEdit(matrix);
+        PlayerMatrixEdit(matrixarg);
     } 
 }// PlayerMatrixEdit
 
 int RandGen(){
     // random generator for computer's play
-    srand(time(0));
     int AiPlay = (rand() %2) + 1;
     return AiPlay; // returns 1,2,3 for ai's play
 }
