@@ -16,8 +16,6 @@ int main(){
     int checkval, freeCheck;
     char Breaker;
 
-    srand(time(0)); // seeding the AI generator to have randomness
-
     cout << "welcome to my tic tac toe game\n";
     PrintMatrix(matrix);
     

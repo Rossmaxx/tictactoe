@@ -1,5 +1,5 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include<cstdio>
+#include<cstdlib>
 #include<time.h> // to seed random function
 
 void PrintMatrix(int matrixarg[3][3]){
@@ -35,6 +35,7 @@ void PlayerMatrixEdit(int matrixarg[3][3]){
 
 int RandGen(){
     // random generator for computer's play
+    srand(time(0)); // seeding the AI generator to have randomness
     int AiPlay = (rand() %2) + 1;
     return AiPlay; // returns 1,2,3 for ai's play
 }
