@@ -10,6 +10,7 @@ void AiMatrixEdit(int[3][3]);
 int checkFreeCells(int[3][3]);
 int CheckMatrix(int[3][3]);
 
+
 // function main
 int main(){
     int matrix[3][3] = { {0,0,0}, {0,0,0} ,{0,0,0} };

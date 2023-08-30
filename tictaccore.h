@@ -1,6 +1,10 @@
 #include<cstdio>
-#include<cstdlib>
-#include<time.h> // to seed random function
+#include<random>
+
+// some stuff needed for random number generation
+std::random_device rd;
+std::mt19937 gen(rd());
+std::uniform_int_distribution<> dist(0,2);
 
 void PrintMatrix(int matrixarg[3][3]){
     //this function is used to print the matrix
@@ -33,19 +37,16 @@ void PlayerMatrixEdit(int matrixarg[3][3]){
     } 
 }// PlayerMatrixEdit
 
-int RandGen(){
-    // random generator for computer's play
-    srand(time(0)); // seeding the AI generator to have randomness
-    int AiPlay = (rand() %2) + 1;
-    return AiPlay; // returns 1,2,3 for ai's play
-}
 
 void AiMatrixEdit(int matrixarg[3][3]){
     // this function is used for ai's turn 
-    int aiRows = RandGen();
-    int aiCols = RandGen();
+    int aiRows = dist(gen);
+    int aiCols = dist(gen);
+    aiRows = aiRows % 3;
+    aiCols = aiCols % 3;
+
     int i, j;
-    if(matrixarg[aiRows][aiCols] == 0) matrixarg[aiRows][aiCols] = 2;
+    if(matrixarg[aiRows][aiCols] == 0) { matrixarg[aiRows][aiCols] = 2; }
     else {
         for (i=0; i<3; i++){
             for (j=0; j<3; j++){
@@ -56,7 +57,6 @@ void AiMatrixEdit(int matrixarg[3][3]){
             }
         }
     }
-    
 } // AiMatrixEdit
 
 int CheckMatrix(int matrixarg[3][3]){
