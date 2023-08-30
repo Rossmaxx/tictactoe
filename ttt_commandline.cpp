@@ -1,14 +1,8 @@
-#include "tictaccore.h"
+#include "tt_core.h"
+#include "tt_cli.h"
 #include <iostream>
 
 using std::cout;
-
-// function declarators, all functions in tictaccore.h
-void PrintMatrix(int[3][3]);
-void PlayerMatrixEdit(int[3][3]);
-void AiMatrixEdit(int[3][3]);
-int checkFreeCells(int[3][3]);
-int CheckMatrix(int[3][3]);
 
 
 // function main
