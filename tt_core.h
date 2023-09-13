@@ -13,15 +13,17 @@ void AiMatrixEdit(int matrixarg[3][3]){
     aiRows = aiRows % 3;
     aiCols = aiCols % 3;
 
+    if(matrixarg[aiRows][aiCols] == 0) { 
+        matrixarg[aiRows][aiCols] = 2;
+        return;
+    }
+    
     int i, j;
-    if(matrixarg[aiRows][aiCols] == 0) { matrixarg[aiRows][aiCols] = 2; }
-    else {
-        for (i=0; i<3; i++){
-            for (j=0; j<3; j++){
-                if (matrixarg[i][j] == 0){
-                    matrixarg[i][j] = 2;
-                    i=3, j=3; // to break out of the nested loop
-                }
+    for (i=0; i<3; i++){
+        for (j=0; j<3; j++){
+            if (matrixarg[i][j] == 0){
+                matrixarg[i][j] = 2;
+                return; // to break out of the nested loop
             }
         }
     }
@@ -33,21 +35,21 @@ int CheckMatrix(int matrixarg[3][3]){
     // horizontal check
     for (int rowNo=0; rowNo<3; rowNo++){
         if ((matrixarg[0][rowNo] == matrixarg[1][rowNo] && matrixarg[1][rowNo] == matrixarg[2][rowNo])){
-            if (matrixarg[0][rowNo] != 0) return matrixarg[0][rowNo];
+            if (matrixarg[0][rowNo] != 0) { return matrixarg[0][rowNo]; }
         }
     }
 
     // vertical check
     for (int colNo=0; colNo<3; colNo++){
         if ((matrixarg[colNo][0] == matrixarg[colNo][1] && matrixarg[colNo][1] == matrixarg[colNo][2])){
-            if (matrixarg[colNo][0] != 0) return matrixarg[colNo][0];
+            if (matrixarg[colNo][0] != 0) { return matrixarg[colNo][0]; }
         }
     }
 
     // diagonal check
     if ((matrixarg[0][0] == matrixarg[1][1] && matrixarg[1][1] == matrixarg[2][2]) 
         || (matrixarg[0][2] == matrixarg[1][1] && matrixarg[1][1] == matrixarg[2][0])){
-        if (matrixarg[1][1] != 0) return matrixarg[1][1];
+        if (matrixarg[1][1] != 0) { return matrixarg[1][1]; }
     }
 
     return 0;
