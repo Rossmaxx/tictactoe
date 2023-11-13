@@ -7,7 +7,7 @@ project(tictactoe VERSION 1.0)
 
 if(QT_GUI)
     find_package(Qt5 COMPONENTS Widgets REQUIRED)
-    #TODO: Add qt sources and headers
+    set(CMAKE_AUTOMOC ON)
     add_executable(tictactoe src/qt_main.cpp)
 
     target_link_libraries(tictactoe PRIVATE Qt5::Widgets)
