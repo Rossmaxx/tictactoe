@@ -48,4 +48,4 @@ int main(int argc, char *argv[]) {
     return app.exec();
 }
 
-#include "main.moc"
+#include "qt_main.moc"
