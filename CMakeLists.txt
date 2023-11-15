@@ -16,3 +16,5 @@ else()
     add_executable(tictactoe src/ttt_commandline.cpp)
     message("Qt not enabled. no GUI support")
 endif()
+
+install(TARGETS tictactoe DESTINATION bin)
