@@ -41,8 +41,8 @@ private:
     QPushButton *buttons[3][3];
 }; // class TicTacToe
 
-int main(int argc, char *argv[]) {
-    QApplication app(argc, argv);
+int main() {
+    QApplication app(0, 0);
     TicTacToe game;
     game.show();
     return app.exec();
