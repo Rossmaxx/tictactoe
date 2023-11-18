@@ -42,7 +42,8 @@ private:
 }; // class TicTacToe
 
 int main() {
-    QApplication app(0, 0);
+    int argc=0;
+    QApplication app(argc, 0);
     TicTacToe game;
     game.show();
     return app.exec();
