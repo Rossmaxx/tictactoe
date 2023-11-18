@@ -24,7 +24,7 @@ if(QT_GUI)
     function(windeployqt target)
 
         # Run windeployqt immediately after build
-        add_custom_command(TARGET ${target} POST_BUILD
+        add_custom_command(TARGET tictactoe POST_BUILD
             COMMAND "${CMAKE_COMMAND}" -E
                 env PATH="${_qt_bin_dir}" "${WINDEPLOYQT_EXECUTABLE}"
                     --verbose 0
@@ -39,7 +39,7 @@ if(QT_GUI)
         include(InstallRequiredSystemLibraries)
         foreach(lib ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS})
             get_filename_component(filename "${lib}" NAME)
-            add_custom_command(TARGET ${target} POST_BUILD
+            add_custom_command(TARGET tictactoe POST_BUILD
                 COMMAND "${CMAKE_COMMAND}" -E
                     copy_if_different "${lib}" \"$<TARGET_FILE_DIR:${target}>\"
                 COMMENT "Copying ${filename}..."
