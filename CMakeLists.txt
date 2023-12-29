@@ -11,7 +11,7 @@ if(QT_GUI)
 
     add_executable(tictactoe src/qt_main.cpp)
     target_link_libraries(tictactoe PRIVATE Qt5::Widgets)
-    set_target_properties(WIN32_EXECUTABLE ON)
+    set_target_properties(PROPERTIES WIN32_EXECUTABLE ON)
 
     message("Qt GUI Enabled")
 else()
